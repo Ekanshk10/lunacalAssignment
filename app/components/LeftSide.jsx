@@ -2,7 +2,10 @@ import React from "react";
 
 const LeftSide = () => {
   return (
-    <div className="w-full max-w-[836px] h-[689px] rounded-[27px] border-(--leftSide-border) bg-[#616161D1] px-8 py-4 overflow-auto wrap-break-words">
+    <div
+      className="w-full max-w-[836px] h-[689px] rounded-[27px] border-(--leftSide-border) bg-[#616161D1] px-8 py-4 overflow-auto wrap-break-words"
+      style={{ scrollbarWidth: "none" }}
+    >
       <ol className="text-white font-medium text-[16px] list-decimal leading-[30px] space-y-2">
         <li>
           Make a duplicate of this Figma by clicking on the drop-down next to
