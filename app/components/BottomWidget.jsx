@@ -6,6 +6,8 @@ import SideSvg from "./SideSvg";
 const BottomWidget = () => {
   const scrollRef = useRef(null);
   const fileInputRef = useRef(null);
+  const [activeButton, setActiveButton] = useState(null);
+
   const [images, setImages] = useState([
     "/image.jpg",
     "/image.jpg",
@@ -16,11 +18,14 @@ const BottomWidget = () => {
     const container = scrollRef.current;
     if (!container) return;
 
+    setActiveButton(direction);
+
     const imageWidth = 180 + 30;
     container.scrollBy({
       left: direction === "right" ? imageWidth : -imageWidth,
       behavior: "smooth",
     });
+    setTimeout(() => setActiveButton(null), 400);
   };
 
   return (
@@ -84,13 +89,18 @@ const BottomWidget = () => {
             <div className="flex gap-[18px]">
               {/* Left slide */}
               <button
-                onClick={() => scroll("left")}
+                onClick={() => {
+                  scroll("left");
+                  //   setActiveButton("left");
+                }}
                 className="w-[45px] h-[45px] rounded-full flex items-center justify-center 
-                  hover:bg-[#303439] transition-all duration-300 
-                  hover:-translate-y-[2px] hover:translate-x-[2px]"
+             hover:bg-[#303439] transition-all duration-300 
+             hover:-translate-y-[2px] hover:translate-x-[2px]"
                 style={{
                   background:
-                    "linear-gradient(139.14deg, #303439 12.4%, #161718 94.96%)",
+                    activeButton === "left"
+                      ? "linear-gradient(300deg, #101213 0%, #96BEE7 100%)"
+                      : "linear-gradient(139.14deg, #303439 12.4%, #161718 94.96%)",
                   boxShadow:
                     "4px 5px 30px 5px #101213, -5px -3px 30px -10px #96BEE7",
                 }}
@@ -104,14 +114,14 @@ const BottomWidget = () => {
                 >
                   <path
                     d="M1 7.99999H15.1944"
-                    stroke="#6F787C"
+                    stroke={activeButton === "left" ? "white" : "#6F787C"}
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   <path
                     d="M8 15L1 8L8 1"
-                    stroke="#6F787C"
+                    stroke={activeButton === "left" ? "white" : "#6F787C"}
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -121,13 +131,18 @@ const BottomWidget = () => {
 
               {/* Right slide */}
               <button
-                onClick={() => scroll("right")}
+                onClick={() => {
+                  scroll("right");
+                  //   setActiveButton("right");
+                }}
                 className="w-[45px] h-[45px] rounded-full flex items-center justify-center 
-                  hover:bg-[#303439] transition-all duration-300 
-                  hover:-translate-y-[2px] hover:translate-x-[2px]"
+             hover:bg-[#303439] transition-all duration-300 
+             hover:-translate-y-[2px] hover:translate-x-[2px]"
                 style={{
                   background:
-                    "linear-gradient(139.14deg, #303439 12.4%, #161718 94.96%)",
+                    activeButton === "right"
+                      ? "linear-gradient(300deg, #101213 0%, #96BEE7 100%)"
+                      : "linear-gradient(139.14deg, #303439 12.4%, #161718 94.96%)",
                   boxShadow:
                     "4px 5px 30px 5px #101213, -5px -3px 30px -10px #96BEE7",
                 }}
@@ -141,14 +156,14 @@ const BottomWidget = () => {
                 >
                   <path
                     d="M15.1945 8.00001L1.00001 8.00001"
-                    stroke="#6F787C"
+                    stroke={activeButton === "right" ? "white" : "#6F787C"}
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   <path
                     d="M8.19446 1L15.1945 8L8.19446 15"
-                    stroke="#6F787C"
+                    stroke={activeButton === "right" ? "white" : "#6F787C"}
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
