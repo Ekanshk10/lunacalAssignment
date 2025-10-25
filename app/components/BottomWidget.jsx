@@ -200,7 +200,7 @@ const BottomWidget = () => {
                   alt={`gallery-${index}`}
                   className="w-full h-full object-cover rounded-[12px] grayscale hover:grayscale-0 transition-all duration-400"
                 />
-              </div>
+              </div>      
             ))}
           </div>
         </div>
